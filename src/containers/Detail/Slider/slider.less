@@ -1,0 +1,29 @@
+.detail-slider{
+  width: 100%;
+  .slider{
+    position: absolute;
+    img {
+      width: 100%;
+      height:80%;
+    }
+  }
+  .dots{
+    position: relative;
+    left:0;
+    top:.2rem;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    span{
+      display: inline-block;
+      width:.25rem;
+      height:.25rem;
+      border-radius: 50%;
+      background:#fff;
+      margin-left:5px;
+      &.active{
+        background: #f9cb74;
+      }
+    }
+  }
+}

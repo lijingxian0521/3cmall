@@ -1,0 +1,43 @@
+.category{
+  width: 100%;
+  p{
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    .icon{
+      font-size: .64rem;
+    }
+    span{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,50%);
+      font-size: .36rem;
+      background-color: yellow;
+    }
+  }
+  ul{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    li{
+      box-sizing: border-box;
+      padding: 3%;
+      width: 50%;
+      p{
+        height: .3rem;
+        line-height: .3rem;
+        font-size: .3rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      span{
+        font-size: .36rem;
+      }
+    }
+  }
+}
