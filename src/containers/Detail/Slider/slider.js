@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import ReactSwipe from 'react-swipe';
 import './slider.less'
-import {connect} from 'react-redux';
 import {ajax} from '../../../utils';
+import actions from '../../../store/actions/list'
+import {connect} from 'react-redux';
+@connect(
+    state => state.list,
+    actions,
+)
 export default class Slider extends Component {
     constructor() {
         super();
@@ -37,9 +42,6 @@ export default class Slider extends Component {
 
     render() {
         // let [...album] = this.state.myProduct;
-        let pro = this.state.myProduct;
-        console.log(pro);
-        // console.log(Object.prototype.toString.call(pro));
         let options = {
             continuous: false, // 无缝轮播
             auto: 1000,
@@ -54,12 +56,12 @@ export default class Slider extends Component {
                 <ReactSwipe
                     className="slider"
                     swipeOptions={options}>
-                    {/*{
-                        this.state.myProduct.album.map((item, index) => (
+                    {
+                        this.props.list.phones.map((item, index) => (
                             <div key={index}><img src={item}/></div>
 
                         ))
-                    }*/}
+                    }
                 </ReactSwipe>
                 <div className="dots">
                     {/*{

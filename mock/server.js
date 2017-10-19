@@ -3,11 +3,9 @@ let session = require('express-session');
 let bodyParser = require('body-parser');
 let {computers,phones,other} = require('./goodsList');
 let list = require('./goodsList');
-let goodList = require('./goodsList');
 let swiper = require('./homeSwiper');
 let cart = require('./cart');
 let app = express();
-let {computers,phones,other} = goodList;
 app.use(session({
     resave:true,
     saveUninitialized:true,
@@ -60,15 +58,15 @@ app.get('/cart',function (req,res) {
     res.json(cart)
 });
 
-app.post('/cart',function (req,res) {
-    // {
-    //     count:1,
-    //     category:'computers',
-    //     id:102,
-    // }
-    let body= req.body;
-    let product = goodList[body.category].find((item,index)=>item.id == body.id);
-    product = {...product,...body};
-    cart.push(product);
-});
+// app.post('/cart',function (req,res) {
+//     // {
+//     //     count:1,
+//     //     category:'computers',
+//     //     id:102,
+//     // }
+//     let body= req.body;
+//     let product = goodList[body.category].find((item,index)=>item.id == body.id);
+//     product = {...product,...body};
+//     cart.push(product);
+// });
 
