@@ -16,6 +16,8 @@ import Cart from "./Cart/index";
 import Profile from "./Profile/index";
 import Detail from "./Detail/detail";
 import Tab from "../components/Tab/index";
+import Login from "./Login/index"
+import Register from "./Register/index"
 
 const history = createHashHistory();
 
@@ -32,6 +34,8 @@ export default class App extends Component {
             <Route path="/cart" component={Cart}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/detail" component={Detail}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/register" component={Register}/>
 
           </Switch>
           <Tab/>

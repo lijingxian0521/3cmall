@@ -52,6 +52,31 @@ let setRem = (doc, win) => {
     if (!doc.addEventListener) return;
     win.addEventListener(resizeEvent, recalCulate, false);
 };
+let str = 'abcdafghijklmnopqrstuvwxyz';
+let ary = [];
+let getFour=()=>{
+
+    if (ary.length >= 4) {
+        ary.splice(0);
+    }
+    let num = Math.round(Math.random() * 25);
+    ary.push(num);
+
+    if (ary.length < 4) {
+        return getFour()
+    } else {
+        return ary;
+    }
+}
+let getCode=()=>{
+    let ary = getFour();
+    let list = '';
+
+    for (let i = 0; i < ary.length; i++) {
+        list += str[ary[i]]
+    }
+    return list;
+}
 let upLoadMore=(element, callback)=>{
     let timer;
     //增加一个事件处理函数
@@ -111,9 +136,11 @@ export {ajax};
 export {setRem};
 export {upLoadMore};
 export {downRefresh}
+export {getCode}
 export default {
     ajax,
     setRem,
     upLoadMore,
-    downRefresh
+    downRefresh,
+    getCode
 }

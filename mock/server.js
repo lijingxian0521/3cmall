@@ -7,7 +7,7 @@ let goodList = require('./goodsList');
 let swiper = require('./homeSwiper');
 let cart = require('./cart');
 let app = express();
-let {computers,phones,other} = goodList;
+app.use(bodyParser.json());
 app.use(session({
     resave:true,
     saveUninitialized:true,
@@ -22,12 +22,13 @@ app.listen(3000);
 });*/
 
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type,Accept');
-    res.header('Access-Control-Allow-Method', 'GET,POST');
-    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Origin', "http://localhost:8080");
+    res.header('Access-Control-Allow-Headers', "Content-Type");
+    res.header('Access-Control-Allow-Methods', "GET,POST,PUT,DELETE,OPTIONS");
+    //允许跨域传cookie
+    res.header('Access-Control-Allow-Credentials', "true");
     if (req.method == 'OPTIONS') {
-        res.end();
+        res.end('');
     } else {
         next();
     }
@@ -71,4 +72,26 @@ app.post('/cart',function (req,res) {
     product = {...product,...body};
     cart.push(product);
 });
-
+let users = [];
+app.post('/login', function (req, res) {
+    let user = req.body;
+    let oldUser = users.find(item => item.mobile == user.mobile && item.password == user.password);
+    if(oldUser){
+        req.session.user = user;//把用户写入会话对象中
+        res.json({code:0,success:'登录成功!',user});
+    }else{
+        res.json({code:1,error:'登录失败!'});
+    }
+});
+app.post('/register', function (req, res) {
+    let user = req.body;//{mobile,password}
+    console.log(user);
+    let oldUser = users.find(item => item.mobile == user.mobile);
+    if (oldUser) {
+        res.json({code: 1, error: '用户名重复'});
+    } else {
+        users.push(user);
+        //后台向前台返回数据的时候需要一个编码，0表示成功，1表示失败
+        res.json({code: 0, success: '用户注册成功'});
+    }
+});

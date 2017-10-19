@@ -16,3 +16,6 @@ export const REQUIRE_CAR_SUCCESS = 'require_car_success';
 
 export const FETCH_SLIDERS = 'FETCH_SLIDERS';
 
+//个人中心会话交互
+export const SET_SESSION_INFO = 'SET_SESSION_INFO';
+
