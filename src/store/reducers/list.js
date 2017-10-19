@@ -9,7 +9,7 @@ let initState={
         loading: false,
         hasMore:true
     }
-}
+};
 export default function (state=initState,action) {
    switch (action.type){
 
@@ -59,11 +59,7 @@ export default function (state=initState,action) {
                    offset:state.list.offset + action.list.computers.length,
 
                }
-           }
-
-
-
-
+           };
        default:
            return state
    }

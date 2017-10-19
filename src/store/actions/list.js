@@ -2,7 +2,7 @@ import * as types from '../action-types'
 import {ajax} from '../../utils'
 let Host= 'http://localhost:3000';
 export default {
-    loadMore(url){
+    /*loadMore(url){
         return (dispatch,getState)=>{
             let {
                 list:{
@@ -32,11 +32,10 @@ export default {
 
 
         }
-    },
+    },*/
 
     getComputersList(url){
         return (dispatch,getState)=>{
-
             ajax({
                 url:`${Host}${url}`,
                 method:'get'
@@ -78,6 +77,5 @@ export default {
                 })
             })
         }
-
     }
 }

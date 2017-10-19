@@ -1,6 +1,12 @@
 import React from 'react';
 import {ajax} from '../../../utils';
 import './detailTab.less';
+import {connect} from 'react-redux'
+import actions from '../../../store/actions/list'
+@connect(//@装饰器  和原来写法一样
+    state => state.list,
+    actions,
+)
 class NewsList extends React.Component {
 
     constructor() {
@@ -10,13 +16,7 @@ class NewsList extends React.Component {
                 {tabName: "商品详情", id: 1},
                 {tabName: "评论", id: 2}
             ],
-            currentIndex: 1,
-            tabInfo: {
-                id:1,
-                brand:'sss',
-                description:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/256GB SSD闪存 MMGG2CH/A)',
-                price:7588
-            }
+            currentIndex: 1
         };
     }
 
@@ -40,7 +40,7 @@ class NewsList extends React.Component {
 
     render() {
         let _this = this;
-        let {brand,description,price} = this.state.tabInfo;
+        let {brand,description,price} = this.props.list.phones;
         return (
             <div>
                 <ul className="detail-tab">
@@ -53,16 +53,20 @@ class NewsList extends React.Component {
                         })
                     }
                 </ul>
-                <div className="tabList">
-                    <div style={{display: this.state.currentIndex == 1 ? 'block' : 'none'}}>
-                        <div>商品名称:  {brand}</div>
-                        <div>商品全称:  {description}</div>
-                        <div>商品价格:  {price}</div>
-                    </div>
-                    <div style={{display: this.state.currentIndex == 2 ? 'block' : 'none'}}>
-                        体育世界
-                    </div>
-                </div>
+                {
+                    this.props.list.phones.map((item,index)=>(
+                        <div className="tabList">
+                            <div style={{display: this.state.currentIndex == 1 ? 'block' : 'none'}}>
+                                <div>商品名称:  {item.brand}</div>
+                                <div>商品全称:  {item.description}</div>
+                                <div>商品价格:  {item.price}</div>
+                            </div>
+                            <div style={{display: this.state.currentIndex == 2 ? 'block' : 'none'}}>
+                                体育世界
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
         )
     }
