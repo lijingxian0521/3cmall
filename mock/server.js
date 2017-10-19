@@ -3,11 +3,12 @@ let session = require('express-session');
 let bodyParser = require('body-parser');
 let {computers,phones,other} = require('./goodsList');
 let list = require('./goodsList');
-let goodList = require('./goodsList');
 let swiper = require('./homeSwiper');
 let cart = require('./cart');
 let app = express();
+
 app.use(bodyParser.json());
+
 app.use(session({
     resave:true,
     saveUninitialized:true,
@@ -61,6 +62,7 @@ app.get('/cart',function (req,res) {
     res.json(cart)
 });
 
+
 app.post('/cart',function (req,res) {
     // {
     //     count:1,
@@ -95,3 +97,4 @@ app.post('/register', function (req, res) {
         res.json({code: 0, success: '用户注册成功'});
     }
 });
+

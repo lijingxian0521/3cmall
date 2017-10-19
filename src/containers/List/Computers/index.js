@@ -27,10 +27,8 @@ export default class Computers extends Component{
 
 
                 {
-
-                        this.props.list.computers.map((item, index) => (
-
-                            <li key={index}>
+                    this.props.list.computers.map((item, index) => (
+                        <li key={index}>
                                 <Link to={{pathname:'/detail',state:{item}}}>
                                 <div className="cover">
                                     <img src={item.cover}/>

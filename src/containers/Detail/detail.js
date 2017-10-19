@@ -3,8 +3,8 @@ import './detail.less';
 import Header from "../../components/Header/index";
 import DetailTab from "./DetailTab/detailTab";
 import Slider from "./Slider/slider";
-import {connect} from 'react-redux';
 import DetailNav from "./DetailNav/detailNav";
+
 export default class Detail extends Component {
     constructor() {
         super();
